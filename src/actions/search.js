@@ -6,7 +6,9 @@ import {
   FETCH_REPOS,
   FETCHING_REPOS,
   TOTAL_PAGES,
-  CHANGE_PAGE
+  CHANGE_PAGE,
+  CHANGE_PAGE_REPOS,
+  TOTAL_PAGES_REPOS
 } from "./types";
 import axios from "axios";
 export const onChange = event => dispatch => {
@@ -18,11 +20,20 @@ export const onChange = event => dispatch => {
 
 
 
-export const fetchRepo = link => dispatch => {
+export const fetchRepo = (link,number,total) => dispatch => {
   dispatch({
     type:FETCHING_REPOS
   })
-  axios.get(link).then(response=>{
+  axios.get(link+`?page=${number}`).then(response=>{
+    const totalpage = total/30;
+    dispatch({
+      type:CHANGE_PAGE_REPOS,
+      payload:number
+    })
+    dispatch({
+      type:TOTAL_PAGES_REPOS,
+      payload: Math.ceil(totalpage)
+    })
     dispatch({
       type:FETCH_REPOS,
       payload: response.data

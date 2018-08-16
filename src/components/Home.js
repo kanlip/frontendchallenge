@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
 import Navbar from "./Navbar";
 import {
   StyledSpinner,
@@ -77,12 +78,16 @@ export default class Home extends Component {
         ) : (
           this.renderUsers()
         )}
-        <Pagination
-          onChange={this.handleChange}
-          total={this.props.total}
-          current={this.props.page}
-          display={6}
-        />
+        <DivCenter>
+          {this.props.users.length === 0 ? null : (
+            <Pagination
+              onChange={this.handleChange}
+              total={this.props.total}
+              current={this.props.page}
+              display={6}
+            />
+          )}
+        </DivCenter>
       </DivBody>
     );
   }

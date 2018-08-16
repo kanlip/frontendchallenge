@@ -6,7 +6,9 @@ import {
   FETCH_REPOS,
   FETCHING_REPOS,
   TOTAL_PAGES,
-  CHANGE_PAGE
+  CHANGE_PAGE,
+  TOTAL_PAGES_REPOS,
+  CHANGE_PAGE_REPOS
 } from "../actions/types";
 
 const initialState = {
@@ -17,7 +19,9 @@ const initialState = {
   fetching: false,
   repos: [],
   page:1,
-  totalPage: 0
+  totalPage: 0,
+  pageRepo:1,
+  totalPageRepo:0
 };
 
 export default (state = initialState, action) => {
@@ -64,6 +68,16 @@ export default (state = initialState, action) => {
       return{
         ...state,
         page:action.payload
+      }
+    case CHANGE_PAGE_REPOS:
+      return{
+        ...state,
+        pageRepo: action.payload
+      }
+    case TOTAL_PAGES_REPOS:
+      return{
+        ...state,
+        totalPageRepo: action.payload
       }
     default:
       return state;

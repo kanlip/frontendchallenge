@@ -4,7 +4,7 @@ import { Container, Card } from "../styles/Userpage";
 import { StyledSpinner, DivCenter, DivCard } from "../styles/styled-utils";
 const mapStateToProps = state => ({
   fetching: state.search.fetching,
-  repos: state.search.repos
+  repos: state.search.repos,
 });
 
 @connect(
@@ -23,15 +23,15 @@ export default class RenderRepos extends Component {
       >
         <h2>{repo.name}</h2>
         <h3>
-          <i class="fas fa-code-branch" />
+          <i className="fas fa-code-branch" />
           {repo.default_branch}
         </h3>
         <p>{repo.language}</p>
         <p>
-          <i class="fas fa-star" /> {repo.stargazers_count}
+          <i className="fas fa-star" /> {repo.stargazers_count}
         </p>
         <p>
-        <i class="fas fa-eye"></i> {repo.watchers_count}
+        <i className="fas fa-eye"></i> {repo.watchers_count}
         </p>
       </Card>
     ));

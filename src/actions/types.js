@@ -6,3 +6,5 @@ export const FETCH_REPOS = "FETCH_REPOS";
 export const FETCHING_REPOS = "FETCHING_REPOS";
 export const TOTAL_PAGES = "TOTAL_PAGES";
 export const CHANGE_PAGE = "CHANGE_PAGE";
+export const TOTAL_PAGES_REPOS = "TOTAL_PAGES_REPOS";
+export const CHANGE_PAGE_REPOS = "CHANGE_PAGE_REPOS";

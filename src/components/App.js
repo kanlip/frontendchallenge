@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Loadable from "react-loadable";
 import { Route, Switch } from "react-router-dom";
 import { StyledSpinner, DivBody } from "../styles/styled-utils";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 function Loading() {
   return (
     <StyledSpinner viewBox="0 0 50 50">
@@ -22,22 +23,30 @@ const Home = Loadable({
 });
 
 const Userpage = Loadable({
-  loader: () => import('./Userpage'),
+  loader: () => import("./Userpage"),
   loading: Loading,
   render(loaded, props) {
     let Component = loaded.default;
     return <Component id={props.match.params.id} />;
-  },
+  }
 });
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/username=:id" component={Userpage} />
-        </Switch>
+        <Route
+          render={({ location }) => (
+            <TransitionGroup>
+              <CSSTransition key={location.key}  classNames="fade" timeout={300}>
+                <Switch location={location}>
+                  <Route exact path="/" component={Home} />
+                  <Route path="/username=:id" component={Userpage} />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
+          )}
+        />
       </div>
     );
   }

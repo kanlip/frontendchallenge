@@ -4,6 +4,7 @@ import { fetchUser, fetchRepo } from "../actions/search";
 import { StyledSpinner, DivCenter, DivCard } from "../styles/styled-utils";
 import { Parallax, Background } from "react-parallax";
 import UserRepo from "./renderRepos";
+import Pagination from "material-ui-pagination";
 import {
   Container,
   Img,
@@ -15,7 +16,9 @@ const mapStateToProps = state => ({
   requesting: state.search.requesting,
   user: state.search.user,
   fetching: state.search.fetching,
-  repos: state.search.repos
+  repos: state.search.repos,
+  page: state.search.pageRepo,
+  total: state.search.totalPageRepo
 });
 
 @connect(
@@ -26,12 +29,24 @@ export default class Userpage extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
     this.props.fetchUser(this.props.id);
   }
   handleClick() {
-    this.props.fetchRepo(this.props.user.repos_url);
+    this.props.fetchRepo(
+      this.props.user.repos_url,
+      this.props.page,
+      this.props.user.public_repos
+    );
+  }
+  handleChange(number) {
+    this.props.fetchRepo(
+      this.props.user.repos_url,
+      number,
+      this.props.user.public_repos
+    );
   }
 
   render() {
@@ -98,6 +113,16 @@ export default class Userpage extends Component {
             <div>
               <UserRepo />
             </div>
+            <DivCenter>
+              {this.props.repos.length === 0 ? null : (
+                <Pagination
+                  onChange={this.handleChange}
+                  total={this.props.total}
+                  current={this.props.page}
+                  display={6}
+                />
+              )}
+            </DivCenter>
           </div>
         )}
       </div>
