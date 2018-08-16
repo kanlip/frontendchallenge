@@ -3,7 +3,7 @@ this is the frontend challenge
 
 ## Set up
 clone this repository and run 
-```cd oddleTest & npm install or yarn install```
+```cd frontendchallenge & npm install or yarn install```
 
 ## Built with
 React Redux Webpack
