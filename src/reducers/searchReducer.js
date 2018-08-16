@@ -1,10 +1,23 @@
-import { ONCHANGE_SEARCH, SEARCH_REQUESTING ,FETCH_USER} from "../actions/types";
-import { Z_DEFAULT_STRATEGY } from "zlib";
+import {
+  ONCHANGE_SEARCH,
+  SEARCH_REQUESTING,
+  FETCH_USER,
+  FETCH_USERDATA,
+  FETCH_REPOS,
+  FETCHING_REPOS,
+  TOTAL_PAGES,
+  CHANGE_PAGE
+} from "../actions/types";
 
 const initialState = {
   requesting: false,
   username: "",
-  users: []
+  users: [],
+  user: {},
+  fetching: false,
+  repos: [],
+  page:1,
+  totalPage: 0
 };
 
 export default (state = initialState, action) => {
@@ -18,7 +31,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         requesting: true,
-        username:""
       };
     case FETCH_USER:
       return {
@@ -26,6 +38,33 @@ export default (state = initialState, action) => {
         requesting: false,
         users: action.payload
       };
+    case FETCH_USERDATA:
+      return{
+        ...state,
+        requesting:false,
+        user: action.payload
+      }
+    case FETCHING_REPOS:
+      return{
+        ...state,
+        fetching:true
+      }
+    case FETCH_REPOS:
+      return{
+        ...state,
+        fetching:false,
+        repos: action.payload
+      }
+    case TOTAL_PAGES:
+      return{
+        ...state,
+        totalPage: action.payload
+      }
+    case CHANGE_PAGE:
+      return{
+        ...state,
+        page:action.payload
+      }
     default:
       return state;
   }

@@ -29,9 +29,12 @@
   "dependencies": {
     "axios": "^0.18.0",
     "babel-plugin-transform-decorators": "^6.24.1",
+    "material-ui": "^0.20.2",
+    "material-ui-pagination": "^1.1.6",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-loadable": "^5.5.0",
+    "react-parallax": "^1.8.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",

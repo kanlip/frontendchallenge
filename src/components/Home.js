@@ -1,29 +1,66 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { StyledSpinner, DivCenter, DivCard } from "../styles/styled-utils";
+import Navbar from "./Navbar";
+import {
+  StyledSpinner,
+  DivCenter,
+  DivCard,
+  Img,
+  DivBody
+} from "../styles/styled-utils";
+import { submitSearch } from "../actions/search";
+import Axios from "axios";
+import Pagination from "material-ui-pagination";
 const mapStateToProps = state => ({
   requesting: state.search.requesting,
   search: state.search.username,
-  users: state.search.users
+  users: state.search.users,
+  total: state.search.totalPage,
+  page: state.search.page
 });
 
-@connect(mapStateToProps)
+@connect(
+  mapStateToProps,
+  { submitSearch }
+)
 export default class Home extends Component {
   constructor(props) {
     super(props);
-  }
-  renderUsers() {
-    if (this.props.users.items !== undefined) {
-      this.props.users.items.map(users => {
-        console.log(users);
-      });
-    }
+    this.handleChange = this.handleChange.bind(this);
   }
 
+  renderUsers() {
+    let followers = 0;
+
+    if (this.props.users.items !== undefined) {
+      const data = this.props.users.items.map((users, index) => {
+        return (
+          <div style={{ paddingTop: "10px" }} key={users.id}>
+            <DivCard
+              onClick={() =>
+                (window.location.href = "/username=" + users.login)
+              }
+            >
+              <div>
+                <Img alt={"avatar"} src={users.avatar_url} />
+              </div>
+              <div>
+                <h2>{users.login}</h2>
+              </div>
+            </DivCard>
+          </div>
+        );
+      });
+      return data;
+    }
+  }
+  handleChange(number) {
+    this.props.submitSearch(this.props.search, number);
+  }
   render() {
-    this.renderUsers();
     return (
-      <div>
+      <DivBody>
+        <Navbar />
         {this.props.requesting === true ? (
           <DivCenter>
             <StyledSpinner viewBox="0 0 50 50">
@@ -38,9 +75,15 @@ export default class Home extends Component {
             </StyledSpinner>
           </DivCenter>
         ) : (
-          <DivCard>Users HERE</DivCard>
+          this.renderUsers()
         )}
-      </div>
+        <Pagination
+          onChange={this.handleChange}
+          total={this.props.total}
+          current={this.props.page}
+          display={6}
+        />
+      </DivBody>
     );
   }
 }

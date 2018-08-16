@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const media = {
   handheld: (...args) => css`
-    @media (max-width: 420px) {
+    @media (max-width: 450px) {
       ${css(...args)};
     }
   `,
@@ -12,13 +12,24 @@ export const media = {
     }
   `
 };
+export const Img = styled.img`
+  margin-left: auto;
+	margin-right: auto;
+	display: block;
+  border-radius: 30px;
+  max-height: 100%;
+  max-width: 100%;
+`;
 export const DivCard = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: pointer;
   height: 100px;
   &::after {
     border-radius: 5px;
@@ -36,7 +47,7 @@ export const DivCard = styled.div`
   &:hover {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     -webkit-transform: scale(1.25, 1.25);
-    transform: scale(1.2, 1);
+    transform: scale(1.1, 1);
   }
   ${media.handheld`
       width: 100%;
@@ -51,7 +62,7 @@ export const DivCard = styled.div`
 `;
 
 export const DivBody = styled.div`
-  position: absolute;
+  position: relative;
   width: 80%;
   top: 7%;
   left: 10%;

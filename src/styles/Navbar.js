@@ -10,7 +10,7 @@ export const InputContainer = styled.div`
   width: 80%;
   left:10%;
   margin: 0 auto;
-  position:fixed;
+  
   text-align: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   ${media.handheld`

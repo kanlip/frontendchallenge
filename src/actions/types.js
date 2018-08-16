@@ -1,3 +1,8 @@
 export const ONCHANGE_SEARCH = "ONCHANGE_SEARCH";
 export const SEARCH_REQUESTING = "SEARCH_REQUESTING";
 export const FETCH_USER = "FETCH_USER";
+export const FETCH_USERDATA = "FETCH_USERDATA";
+export const FETCH_REPOS = "FETCH_REPOS";
+export const FETCHING_REPOS = "FETCHING_REPOS";
+export const TOTAL_PAGES = "TOTAL_PAGES";
+export const CHANGE_PAGE = "CHANGE_PAGE";

@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { onChange, submitSearch } from "../actions/search";
 const mapStateToProps = state => ({
   requesting: state.search.requesting,
-  search: state.search.username
+  search: state.search.username,
+  page: state.search.page
 });
 
 @connect(
@@ -20,10 +21,11 @@ export default class Navbar extends Component {
 
   handleChange(e) {
     this.props.onChange(e.target.value);
+
   }
   handleSubmit(e) {
     e.preventDefault();
-    this.props.submitSearch(this.props.search);
+    this.props.submitSearch(this.props.search,this.props.page);
   }
   render() {
     return (
