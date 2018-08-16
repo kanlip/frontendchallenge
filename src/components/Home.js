@@ -12,6 +12,7 @@ import {
 import { submitSearch } from "../actions/search";
 import Axios from "axios";
 import Pagination from "material-ui-pagination";
+import { Helmet } from "react-helmet";
 const mapStateToProps = state => ({
   requesting: state.search.requesting,
   search: state.search.username,
@@ -61,6 +62,10 @@ export default class Home extends Component {
   render() {
     return (
       <DivBody>
+        <Helmet>
+          <title>Home</title>
+          <meta name="description" content={"Oddle Challenge"} />
+        </Helmet>
         <Navbar />
         {this.props.requesting === true ? (
           <DivCenter>

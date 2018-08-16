@@ -5,6 +5,7 @@ import { StyledSpinner, DivCenter, DivCard } from "../styles/styled-utils";
 import { Parallax, Background } from "react-parallax";
 import UserRepo from "./renderRepos";
 import Pagination from "material-ui-pagination";
+import { Helmet } from "react-helmet";
 import {
   Container,
   Img,
@@ -52,6 +53,11 @@ export default class Userpage extends Component {
   render() {
     return (
       <div>
+        <Helmet>
+          <title>{this.props.user.login}</title>
+          <meta name="description" content={this.props.user.bio} />
+          <meta name="og:image" content={this.props.user.avatar_url} />
+        </Helmet>
         {/* <a href='/'>Goback to homepage</a> */}
         {this.props.requesting === true ? (
           <DivCenter>
