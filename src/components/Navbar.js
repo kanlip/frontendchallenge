@@ -21,7 +21,9 @@ export default class Navbar extends Component {
 
   handleChange(e) {
     this.props.onChange(e.target.value);
-
+    setTimeout(()=> {
+      this.props.submitSearch(this.props.search,this.props.page);
+    },500)
   }
   handleSubmit(e) {
     e.preventDefault();
