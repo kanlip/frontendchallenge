@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
     case SEARCH_REQUESTING:
       return {
         ...state,
-        requesting: true,
+        requesting: action.payload,
       };
     case FETCH_USER:
       return {
