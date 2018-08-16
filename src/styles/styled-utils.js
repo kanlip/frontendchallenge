@@ -14,8 +14,8 @@ export const media = {
 };
 export const Img = styled.img`
   margin-left: auto;
-	margin-right: auto;
-	display: block;
+  margin-right: auto;
+  display: block;
   border-radius: 30px;
   max-height: 100%;
   max-width: 100%;
